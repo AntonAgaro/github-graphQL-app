@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Header from './components/Header/Header';
+import Form from './components/Form/Form';
+import './App.scss';
+import fetchData from './utils/fetchData';
 
-function App() {
+const App = () => {
+  const [owner, setOwner] = useState('');
+  const [name, setName] = useState('');
+
+  const onChangeOwner = value => {
+    setOwner(value);
+  }
+
+  const onChangeName = value => {
+    setName(value);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
+  console.log('Owner: ', owner);
+  console.log('Name: ', name);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Form onChangeOwner={onChangeOwner} onChangeName={onChangeName}/>
     </div>
   );
 }

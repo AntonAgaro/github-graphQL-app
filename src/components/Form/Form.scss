@@ -1,0 +1,29 @@
+.form {
+  margin: 0 auto;
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  border: #FFFFFF;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 20px;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 5px;
+  }
+
+  button {
+    width: 50%;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
