@@ -1,16 +1,16 @@
-const fetchData = (token, owner, repository) => {
+const fetchData = async (token, owner, repository) => {
   const body = JSON.stringify(
     {
       query: `{
         repository(owner: "${owner}", name: "${repository}") {
-          issues(last: 1000, status: OPEN) {
+          issues(last: 100, states: OPEN) {
             edges {
               node {
                 title
                 author {
                   login
                 }
-                comments(first: 1000) {
+                comments(last: 100) {
                   edges {
                     node {
                       bodyText
@@ -26,7 +26,7 @@ const fetchData = (token, owner, repository) => {
   )
 
   
-  fetch('https://api.github.com/graphql', {
+  const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       Authorization: `token ${token}`,
@@ -35,9 +35,10 @@ const fetchData = (token, owner, repository) => {
       'Content-type': 'application/json'
     },
     body: body,
-  })
-    .then(res => res.json())
-    .then(res => console.log(res.data));
+  });
+
+  return response;
+    
 }
 
 export default fetchData;

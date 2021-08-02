@@ -1,3 +1,4 @@
+
 .form {
   margin: 0 auto;
   width: 500px;
@@ -29,5 +30,16 @@
     width: 50%;
     padding: 5px;
     cursor: pointer;
+  }
+}
+
+.error-message {
+  display: none;
+  margin: 0 auto;
+  width: 500px;
+  text-align: center;
+  color: #FFFFFF;
+  &--active {
+    display: block;
   }
 }
