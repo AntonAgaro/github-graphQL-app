@@ -2,25 +2,29 @@ import React from 'react';
 import './Form.scss';
 
 const Form = props => {
-  const handleChangeOwner = event => {
-    props.onChangeOwner(event.target.value);
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.fetchRepositoryInfo();
   }
-
-  const handleChangeName = event => {
-    props.onChangeName(event.target.value);
-  }
-
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="form__wrapper">
+        <label htmlFor="token">Enter Github token</label>
+        <input 
+        id="token" type="password" placeholder="Token..." 
+        onChange={(event) => props.onChangeStepOneInfo(event.target.id, event.target.value)} />
+      </div>
       <div className="form__wrapper">
         <label htmlFor="owner">Enter repository owner</label>
-        <input id="owner" type="text" placeholder="Owner..." onChange={handleChangeOwner} />
+        <input id="owner" type="text" placeholder="Owner..." 
+        onChange={(event) => props.onChangeStepOneInfo(event.target.id, event.target.value)} />
       </div>
       <div className="form__wrapper">
         <label htmlFor="repo-name">Enter repository name</label>
-        <input id="repo-name" type="text" placeholder="Name..." onChange={handleChangeName}/>
+        <input id="repository" type="text" placeholder="Name..." 
+        onChange={(event) => props.onChangeStepOneInfo(event.target.id, event.target.value)}/>
       </div>
-      <button>Find</button>
+      <button type="submit">Find</button>
     </form>
   )
 }

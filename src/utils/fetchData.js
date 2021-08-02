@@ -1,13 +1,40 @@
-const fetchData = () => {
+const fetchData = (token, owner, repository) => {
+  const body = JSON.stringify(
+    {
+      query: `{
+        repository(owner: "${owner}", name: "${repository}") {
+          issues(last: 1000, status: OPEN) {
+            edges {
+              node {
+                title
+                author {
+                  login
+                }
+                comments(first: 1000) {
+                  edges {
+                    node {
+                      bodyText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`
+    }
+  )
+
+  
   fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: 'token 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',
+      Authorization: `token ${token}`,
       Accept: 'application/json',
       'User-Agent': 'request',
       'Content-type': 'application/json'
     },
-    body: JSON.stringify({query: '{user(login: "AntonAgaro"){login}}'}),
+    body: body,
   })
     .then(res => res.json())
     .then(res => console.log(res.data));

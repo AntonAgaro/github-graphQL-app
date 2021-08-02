@@ -5,28 +5,27 @@ import './App.scss';
 import fetchData from './utils/fetchData';
 
 const App = () => {
-  const [owner, setOwner] = useState('');
-  const [name, setName] = useState('');
+  const [repositoryInfo, setRepositoryInfo] = useState({});
 
-  const onChangeOwner = value => {
-    setOwner(value);
+  const onChangeStepOneInfo = (key, value) => {
+    setRepositoryInfo((prev) => {
+      return {...prev, [key]: value}
+    })
   }
 
-  const onChangeName = value => {
-    setName(value);
+  const fetchRepositoryInfo = () => {
+    const {token, owner, repository} = repositoryInfo
+    fetchData(token, owner, repository);
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-  
-  console.log('Owner: ', owner);
-  console.log('Name: ', name);
-
+  console.log('Info:', repositoryInfo);
   return (
     <div className="App">
       <Header/>
-      <Form onChangeOwner={onChangeOwner} onChangeName={onChangeName}/>
+      <Form 
+        fetchRepositoryInfo={fetchRepositoryInfo}
+        onChangeStepOneInfo={onChangeStepOneInfo} 
+      />
     </div>
   );
 }
