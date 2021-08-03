@@ -7,9 +7,8 @@ const fetchData = async (token, owner, repository) => {
             edges {
               node {
                 title
-                author {
-                  login
-                }
+                bodyText
+                url 
                 comments(last: 100) {
                   edges {
                     node {

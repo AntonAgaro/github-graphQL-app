@@ -1,0 +1,25 @@
+.issue-card {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+  text-align: justify;
+  overflow-wrap: break-word;
+  border-bottom: 1px solid #023047;
+  
+
+  &__text, &__title {
+    hyphens: auto;
+  }
+
+  h3 {
+    display: inline-block;
+  }
+
+  &__btn {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+}

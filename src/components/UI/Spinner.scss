@@ -1,6 +1,7 @@
-lds-spinner {
+.lds-spinner {
+  margin: 0 auto;
   color: official;
-  display: inline-block;
+  display: block;
   position: relative;
   width: 80px;
   height: 80px;
@@ -79,4 +80,6 @@ lds-spinner {
 
 .spinner {
   margin: 0 auto;
+  width: 500px;
+  height: 300px;
 }

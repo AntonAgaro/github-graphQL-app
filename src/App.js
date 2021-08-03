@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import Spinner from './components/UI/Spinner';
 import './App.scss';
 import fetchData from './utils/fetchData';
+import IssuesList from './components/IssuesList/IssuesList';
 
 const App = () => {
   const [repositoryInfo, setRepositoryInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [issues, setIssues] = useState('');
 
   const onChangeStepOneInfo = (key, value) => {
     setRepositoryInfo((prev) => {
       return {...prev, [key]: value}
     })
   }
-
-  console.log(error);
 
   const fetchRepositoryInfo = async () => {
     const {token, owner, repository} = repositoryInfo;
@@ -33,26 +33,48 @@ const App = () => {
         return res.json();
       })
       .then(res => {
-        console.log(res.data);
+        setIssues(res.data);
         setIsLoading(false);
       })
       .catch(e => console.log(e));
-    
   }
 
-  console.log('Info:', repositoryInfo);
+  const startNewSearch = () => {
+    setIssues('');
+  }
+
+  const renderForm = () => {
+    if (!issues.repository) {
+      return (
+        isLoading ? 
+          <Spinner/> :
+          <Form 
+            error={error}
+            fetchRepositoryInfo={fetchRepositoryInfo}
+            onChangeStepOneInfo={onChangeStepOneInfo} 
+        /> 
+      )
+    }
+  }
+
+  const renderIssuesList = () => {
+    if (issues.repository) {
+      return (
+        <IssuesList 
+          issues={issues.repository.issues.edges}
+          startNewSearch={startNewSearch}
+        />
+      )
+    }
+  }
+
+  console.log('Issues: ', issues);
   return (
-    <div className="App">
-      <Header/>
-      {isLoading ? 
-        <Spinner/> :
-        <Form 
-          error={error}
-          fetchRepositoryInfo={fetchRepositoryInfo}
-          onChangeStepOneInfo={onChangeStepOneInfo} 
-      /> 
-        }
-    </div>
+      <div className="App">
+        <Header/>
+        {renderForm()}
+        {renderIssuesList()}
+      </div>
   );
 }
 

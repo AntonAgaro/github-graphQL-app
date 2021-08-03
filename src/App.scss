@@ -6,17 +6,19 @@
 
 html {
   font-size: 100%;
+  color: #023047;
 }
 
 body {
-  height: 100vh;
-  background: #9BF6FF;
-  background: linear-gradient(to bottom right, #9BF6FF, #C31FF8);
+  min-height: 100vh;
+  // background: #9BF6FF;
+  // background: linear-gradient(to bottom right, #9BF6FF, #C31FF8);
 }
 
 .App {
   width: 1200px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
-  background: rgba(#3f37c9, 0.3);
+  background: #8ecae6;
+  // background: rgba(#3f37c9, 0.3);
 }

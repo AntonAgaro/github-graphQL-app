@@ -4,7 +4,6 @@
   width: 500px;
   height: 300px;
   padding: 20px;
-  border: #FFFFFF;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -17,9 +16,6 @@
     gap: 10px;
   }
 
-  label {
-    color: #FFFFFF;
-  }
 
   input {
     width: 100%;
@@ -38,7 +34,6 @@
   margin: 0 auto;
   width: 500px;
   text-align: center;
-  color: #FFFFFF;
   &--active {
     display: block;
   }
