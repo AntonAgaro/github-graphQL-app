@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
-import Spinner from './components/UI/Spinner';
+import Spinner from './components/UI/Spinner/Spinner';
+import Modal from './components/UI/Modal/Modal';
 import './App.scss';
 import fetchData from './utils/fetchData';
 import IssuesList from './components/IssuesList/IssuesList';
@@ -11,6 +12,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [issues, setIssues] = useState('');
+  const [modalActive, setModalActive] = useState(false);
+  const [choosenIssue, setChoosenIssue] = useState({});
 
   const onChangeStepOneInfo = (key, value) => {
     setRepositoryInfo((prev) => {
@@ -47,7 +50,7 @@ const App = () => {
     if (!issues.repository) {
       return (
         isLoading ? 
-          <Spinner/> :
+          <Spinner classes="lds-spinner" wrapperClass="spinner"/> :
           <Form 
             error={error}
             fetchRepositoryInfo={fetchRepositoryInfo}
@@ -63,17 +66,29 @@ const App = () => {
         <IssuesList 
           issues={issues.repository.issues.edges}
           startNewSearch={startNewSearch}
+          setModalActive={setModalActive}
+          modalActive={modalActive}
+          setChoosenIssue={setChoosenIssue}
         />
       )
     }
   }
 
-  console.log('Issues: ', issues);
+  useEffect(() => {
+    document.body.style.overflowY = modalActive ? 'hidden' : '';
+  }, [modalActive])
+
   return (
       <div className="App">
         <Header/>
         {renderForm()}
         {renderIssuesList()}
+        <Modal 
+          active={modalActive} 
+          setModalActive={setModalActive} 
+          choosenIssue={choosenIssue}
+          token={repositoryInfo.token}
+        />
       </div>
   );
 }

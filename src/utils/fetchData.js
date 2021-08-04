@@ -8,7 +8,8 @@ const fetchData = async (token, owner, repository) => {
               node {
                 title
                 bodyText
-                url 
+                url
+                id 
                 comments(last: 100) {
                   edges {
                     node {
@@ -23,8 +24,7 @@ const fetchData = async (token, owner, repository) => {
       }`
     }
   )
-
-  
+    
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {

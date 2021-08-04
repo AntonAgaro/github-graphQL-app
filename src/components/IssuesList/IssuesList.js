@@ -1,8 +1,8 @@
 import React from 'react';
-import IssuesCard from '../../IssuesCard/IssuesCard';
+import IssuesCard from '../IssuesCard/IssuesCard';
 import './IssuesList.scss';
 
-const IssuesList = ({issues, startNewSearch}) => {
+const IssuesList = ({issues, startNewSearch, modalActive, setModalActive, setChoosenIssue}) => {
   return (
     <div className="issues-wrapper">
       <div className="issues-wrapper__button-container">
@@ -14,11 +14,15 @@ const IssuesList = ({issues, startNewSearch}) => {
       {issues.map((item, index) => {
         const issue = item.node;
         return <IssuesCard 
-                key={index + issue.title}
+                key={issue.id}
+                id={issue.id}
                 title={issue.title} 
                 text={issue.bodyText}
                 comments={issue.comments.edges.length}
                 url={issue.url}  
+                setModalActive={setModalActive}
+                modalActive={modalActive}
+                setChoosenIssue={setChoosenIssue}
                 />
       })}
     </div>
