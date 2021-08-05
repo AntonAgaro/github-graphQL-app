@@ -1,7 +1,7 @@
 
 .form {
   margin: 0 auto;
-  width: 500px;
+  max-width: 500px;
   height: 300px;
   padding: 20px;
   display: flex;
@@ -32,7 +32,7 @@
 .error-message {
   display: none;
   margin: 0 auto;
-  width: 500px;
+  max-width: 500px;
   text-align: center;
   &--active {
     display: block;

@@ -36,6 +36,10 @@ const App = () => {
         return res.json();
       })
       .then(res => {
+        if (res.errors) {
+          setIsLoading(false);
+          setError(res.errors[0].message);
+        }
         setIssues(res.data);
         setIsLoading(false);
       })
@@ -52,6 +56,7 @@ const App = () => {
         isLoading ? 
           <Spinner classes="lds-spinner" wrapperClass="spinner"/> :
           <Form 
+            setError={setError}
             error={error}
             fetchRepositoryInfo={fetchRepositoryInfo}
             onChangeStepOneInfo={onChangeStepOneInfo} 
@@ -64,6 +69,8 @@ const App = () => {
     if (issues.repository) {
       return (
         <IssuesList 
+          fetchRepositoryInfo={fetchRepositoryInfo}
+          repositoryInfo={repositoryInfo}
           issues={issues.repository.issues.edges}
           startNewSearch={startNewSearch}
           setModalActive={setModalActive}

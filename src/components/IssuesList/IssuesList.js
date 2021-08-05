@@ -2,7 +2,13 @@ import React from 'react';
 import IssuesCard from '../IssuesCard/IssuesCard';
 import './IssuesList.scss';
 
-const IssuesList = ({issues, startNewSearch, modalActive, setModalActive, setChoosenIssue}) => {
+const IssuesList = ({issues, startNewSearch, modalActive, setModalActive, setChoosenIssue, fetchRepositoryInfo, repositoryInfo}) => {
+
+  const refreshRepositoryData = () => {
+    const {token, owner, repository} = repositoryInfo;
+    fetchRepositoryInfo(token, owner, repository);
+  }
+
   return (
     <div className="issues-wrapper">
       <div className="issues-wrapper__button-container">
@@ -10,8 +16,12 @@ const IssuesList = ({issues, startNewSearch, modalActive, setModalActive, setCho
           className="issues-wrapper__btn"
           onClick={startNewSearch}
         >New search</button>
+        <button 
+          className="issues-wrapper__btn"
+          onClick={refreshRepositoryData}
+        >Refresh</button>
       </div>
-      {issues.map((item, index) => {
+      {issues.map((item) => {
         const issue = item.node;
         return <IssuesCard 
                 key={issue.id}

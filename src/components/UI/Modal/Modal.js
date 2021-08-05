@@ -28,7 +28,6 @@ const Modal = ({active, setModalActive, choosenIssue, token}) => {
         if (!res.data) {
           throw new Error('Error! Check entering data and try again.')
         }
-        console.log(res);
         setCommentText('');
         setIsLoading(false);
         setPushedComment(res.data.addComment.commentEdge.node.body);

@@ -4,7 +4,7 @@ import './Header.scss';
 const Header = () => {
   return (
     <header className="header">
-      <h1>Github issues</h1>
+      <h1 className="header__title">Github issues manager</h1>
     </header>
   )
 }
