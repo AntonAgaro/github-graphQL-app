@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/github-graphQL-app/static/css/main.fdf0c15e.chunk.css",
+    "main.js": "/github-graphQL-app/static/js/main.5f5d7141.chunk.js",
+    "main.js.map": "/github-graphQL-app/static/js/main.5f5d7141.chunk.js.map",
+    "runtime-main.js": "/github-graphQL-app/static/js/runtime-main.fe7b5d6f.js",
+    "runtime-main.js.map": "/github-graphQL-app/static/js/runtime-main.fe7b5d6f.js.map",
+    "static/js/2.5e9aa2fd.chunk.js": "/github-graphQL-app/static/js/2.5e9aa2fd.chunk.js",
+    "static/js/2.5e9aa2fd.chunk.js.map": "/github-graphQL-app/static/js/2.5e9aa2fd.chunk.js.map",
+    "index.html": "/github-graphQL-app/index.html",
+    "static/css/main.fdf0c15e.chunk.css.map": "/github-graphQL-app/static/css/main.fdf0c15e.chunk.css.map",
+    "static/js/2.5e9aa2fd.chunk.js.LICENSE.txt": "/github-graphQL-app/static/js/2.5e9aa2fd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fe7b5d6f.js",
+    "static/js/2.5e9aa2fd.chunk.js",
+    "static/css/main.fdf0c15e.chunk.css",
+    "static/js/main.5f5d7141.chunk.js"
+  ]
+}
